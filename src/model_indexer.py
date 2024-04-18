@@ -1,3 +1,4 @@
+import math
 import glm
 import multiprocessing
 import threading
@@ -91,7 +92,8 @@ def calculate_aabb(vertices):
     max_distance_y = abs(aabb_max.y - center.y)
     max_distance_z = abs(aabb_max.z - center.z)
 
-    max_distance = max(min_distance_x, min_distance_y, min_distance_z, max_distance_x, max_distance_y, max_distance_z)
+    # max_distance = max(min_distance_x, min_distance_y, min_distance_z, max_distance_x, max_distance_y, max_distance_z)
+    max_distance = math.sqrt(max_distance_x**2 + max_distance_y**2 + max_distance_z**2)
     
 
     # max_distance = max(abs(aabb_min.x - center.x), abs(aabb_min.y - center.y))
