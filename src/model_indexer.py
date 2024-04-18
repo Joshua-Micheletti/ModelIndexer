@@ -64,10 +64,17 @@ def load_model(file_path):
 
 def calculate_aabb(vertices):
     
-    aabb_min = glm.vec3(999999)
+    aabb_min = glm.vec3( 999999)
     aabb_max = glm.vec3(-999999)
+    
+    max_distance = -999999
 
     for i in range(0, len(vertices), 3):
+        distance = math.sqrt(vertices[i + 0]**2 + vertices[i + 1]**2 + vertices[i + 2]**2)
+        
+        if distance > max_distance:
+            max_distance = distance
+        
         if vertices[i + 0] > aabb_max.x:
             aabb_max.x = vertices[i + 0]
         if vertices[i + 0] < aabb_min.x:
@@ -85,15 +92,15 @@ def calculate_aabb(vertices):
 
     center = (aabb_min + aabb_max) / 2
 
-    min_distance_x = abs(aabb_min.x - center.x)
-    min_distance_y = abs(aabb_min.y - center.y)
-    min_distance_z = abs(aabb_min.z - center.z)
-    max_distance_x = abs(aabb_max.x - center.x)
-    max_distance_y = abs(aabb_max.y - center.y)
-    max_distance_z = abs(aabb_max.z - center.z)
+    # min_distance_x = abs(aabb_min.x - center.x)
+    # min_distance_y = abs(aabb_min.y - center.y)
+    # min_distance_z = abs(aabb_min.z - center.z)
+    # max_distance_x = abs(aabb_max.x - center.x)
+    # max_distance_y = abs(aabb_max.y - center.y)
+    # max_distance_z = abs(aabb_max.z - center.z)
 
     # max_distance = max(min_distance_x, min_distance_y, min_distance_z, max_distance_x, max_distance_y, max_distance_z)
-    max_distance = math.sqrt(max_distance_x**2 + max_distance_y**2 + max_distance_z**2)
+    # max_distance = math.sqrt(max_distance_x**2 + max_distance_y**2 + max_distance_z**2)
     
 
     # max_distance = max(abs(aabb_min.x - center.x), abs(aabb_min.y - center.y))
